@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Filter</title>
+</head>
+<body>
+    <h1>Product Filter</h1>
+    <label for="search-input">Search Result:</label>
+    <input id="search-input" type="text">
+    <ul id="product-array">
+
+    </ul>
+
+    <script>
+
+        const products = [
+            "Outerwear",
+            "Jacket",
+            "Sweater",
+            "T-Shirts",
+            "Dresses",
+            "Bottoms",
+            "Loungewear",
+            "Sportwear",
+            "Pants",
+            "Hoddies",
+        ];
+
+
+        const clothesList = document.getElementById("product-array");
+        for (let product of products) {
+            const listPieces = document.createElement("li");
+            listPieces.textContent = product;
+            clothesList.appendChild(listPieces);
+        }
+
+
+        function searchProducts(query) {
+            return products.filter(product => product.toLowerCase().includes(query.toLowerCase()));
+        }
+
+
+        const searchInput = document.getElementById("search-input");
+        searchInput.addEventListener("input", () => {
+            const query = searchInput.value;
+            const filteredProducts = searchProducts(query);
+
+
+            clothesList.innerHTML = "";
+
+
+            for (let product of filteredProducts) {
+                const listPieces = document.createElement("li");
+                listPieces.textContent = product;
+                clothesList.appendChild(listPieces);
+            }
+        });
+    </script>
+</body>
+</html>
